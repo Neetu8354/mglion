@@ -1,0 +1,293 @@
+body {
+  margin: 0;
+}
+
+.header-animated-banner{
+  background: radial-gradient(50% 28800% at 50% 100%, #10111B 0%, #091267 76.56%, #030B48 100%);
+}
+
+.header-animated-banner > div {
+  background: radial-gradient(50% 28800% at 50% 100%, #10111B 0%, #091267 76.56%, #030B48 100%);
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 34px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.header-animated-banner > div img {
+  display: block;
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
+.header-animated-banner > div > img {
+  position: absolute;
+  width: 50%;
+}
+.header-animated-banner > div > img:nth-of-type(2) {
+  margin: -23% 0 0 -25%;
+  left: 0;
+}
+.header-animated-banner > div > img:nth-of-type(3) {
+  margin: -23% -25% 0 0;
+  right: 0;
+}
+.header-animated-banner > div > img:not(.bg) {
+  animation: rotation 8s linear infinite;
+}
+.header-animated-banner > div > img.bg {
+  width: 100%;
+  left: 0;
+  bottom: 34px;
+  animation: bg 3s linear infinite;
+}
+@media (max-width: 540px) {
+  .header-animated-banner > div > img.bg {
+    animation: bg 2s linear infinite;
+    width: 200%;
+    max-width: 200%;
+    left: -50%;
+  }
+}
+.header-animated-banner > div .item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.header-animated-banner > div .item:nth-of-type(1) {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.header-animated-banner > div .item:nth-of-type(1) img:nth-child(1) {
+  max-width: 84px;
+  animation: scale 5s ease-in-out infinite;
+}
+.header-animated-banner > div .item:nth-of-type(1) img:nth-child(2) {
+  max-width: 44px;
+  margin-left: -10px;
+  animation: scale 5s ease-in-out 0.2s infinite;
+}
+@media (max-width: 954px) {
+  .header-animated-banner > div .item:nth-of-type(1) {
+    display: none;
+  }
+}
+.header-animated-banner > div .item:nth-of-type(2) {
+  position: relative;
+  z-index: 5;
+}
+.header-animated-banner > div .item:nth-of-type(2) img {
+  max-width: 100px;
+}
+.header-animated-banner > div .item:nth-of-type(2) img:nth-child(1) {
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  animation: person1 5s ease-in-out 0.2s infinite;
+}
+.header-animated-banner > div .item:nth-of-type(2) img:nth-child(2) {
+  position: relative;
+  z-index: 1;
+  animation: person1 5s ease-in-out infinite;
+}
+@media (max-width: 1078px) {
+  .header-animated-banner > div .item:nth-of-type(2) {
+    margin-left: -120px;
+  }
+}
+@media (max-width: 954px) {
+  .header-animated-banner > div .item:nth-of-type(2) {
+    margin-left: -45px;
+  }
+}
+@media (max-width: 540px) {
+  .header-animated-banner > div .item:nth-of-type(2) {
+    display: none;
+  }
+}
+.header-animated-banner > div .item:nth-of-type(4) {
+  margin-right: -24px;
+  position: relative;
+  z-index: 5;
+}
+.header-animated-banner > div .item:nth-of-type(4) img {
+  max-width: 120px;
+}
+.header-animated-banner > div .item:nth-of-type(4) img:nth-child(1) {
+  position: relative;
+  z-index: 1;
+  animation: person2 5s ease-in-out infinite;
+}
+.header-animated-banner > div .item:nth-of-type(4) img:nth-child(2) {
+  position: absolute;
+  animation: person2 5s ease-in-out 0.2s infinite;
+  left: 10px;
+  top: 10px;
+}
+@media (max-width: 1078px) {
+  .header-animated-banner > div .item:nth-of-type(4) {
+    margin-right: -90px;
+  }
+}
+@media (max-width: 954px) {
+  .header-animated-banner > div .item:nth-of-type(4) {
+    margin-right: -65px;
+  }
+}
+@media (max-width: 540px) {
+  .header-animated-banner > div .item:nth-of-type(4) {
+    display: none;
+  }
+}
+.header-animated-banner > div .item:nth-of-type(5) {
+  margin-right: -30px;
+}
+.header-animated-banner > div .item:nth-of-type(5) img:nth-child(1) {
+  max-width: 36px;
+  margin-right: -17px;
+  position: relative;
+  z-index: 2;
+  animation: scale 5s ease-in-out 0.2s infinite;
+}
+.header-animated-banner > div .item:nth-of-type(5) img:nth-child(2) {
+  max-width: 84px;
+  animation: scale 5s ease-in-out infinite;
+}
+@media (max-width: 954px) {
+  .header-animated-banner > div .item:nth-of-type(5) {
+    display: none;
+  }
+}
+.header-animated-banner > div .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  width: 574px;
+}
+.header-animated-banner > div .text img {
+  max-width: 20px;
+  animation: swing1 2s linear infinite;
+}
+.header-animated-banner > div .text span {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: white;
+  font-size: 26px;
+  height: 100%;
+  line-height: 143%;
+  white-space: nowrap;
+  margin: 0 15px;
+}
+.header-animated-banner > div .text span + img {
+  transform: scale(-1, 1);
+  animation: swing2 2s linear infinite;
+}
+@media (max-width: 540px) {
+  .header-animated-banner > div .text span {
+    margin: 8px 5px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 540px) {
+  .header-animated-banner > div .text {
+    width: 100%;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bg {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(150%);
+    opacity: 0;
+  }
+}
+@keyframes swing1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes swing2 {
+  0% {
+    transform: rotate(0deg) scale(-1, 1);
+  }
+  50% {
+    transform: rotate(-30deg) scale(-1, 1);
+  }
+  100% {
+    transform: rotate(0deg) scale(-1, 1);
+  }
+}
+@keyframes scale {
+  0% {
+    transform: scale(0);
+  }
+  5% {
+    transform: scale(1.3);
+  }
+  10% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes person1 {
+  0% {
+    transform: translate(-20px, 80px) rotate(-65deg);
+  }
+  5% {
+    transform: translate(0) rotate(30deg);
+  }
+  10% {
+    transform: translate(0) rotate(0deg);
+  }
+  90% {
+    transform: translate(0) rotate(0deg);
+  }
+  100% {
+    transform: translate(-20px, 80px) rotate(-65deg);
+  }
+}
+@keyframes person2 {
+  0% {
+    transform: translate(20px, 80px) rotate(65deg);
+  }
+  5% {
+    transform: translate(0) rotate(-30deg);
+  }
+  10% {
+    transform: translate(0) rotate(0deg);
+  }
+  90% {
+    transform: translate(0) rotate(0deg);
+  }
+  100% {
+    transform: translate(20px, 80px) rotate(65deg);
+  }
+}

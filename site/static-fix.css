@@ -1,0 +1,155 @@
+/* Static snapshot fixes: neutralize JS-driven hooper carousels. */
+.hooper { height: auto !important; }
+.hooper-list { overflow: hidden; }
+.hooper-track {
+  display: flex !important;
+  transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+.hooper-slide { flex-shrink: 0; box-sizing: border-box; opacity: 1 !important; }
+.hooper-slide.is-clone { display: none !important; }
+/* theme fades non-active slides via JS-cycled classes (wolf-custom.css uses
+   !important, so we must match its exact specificity to win) */
+.wolf-open-home .right-sidebar .home-casiono-icons .hooper-slide,
+.wolf-open-home .right-sidebar .home-casiono-icons .hooper-slide.is-prev,
+.wolf-open-home .right-sidebar .home-casiono-icons .hooper-slide.is-next {
+  opacity: 1 !important;
+}
+
+/* Vertical tickers (fixtures, winner announcements): theme CSS already caps
+   .hooper-track height (46px / 162px); the list just clips to it. Anything
+   uncapped gets a sane scrollable limit instead of a giant column. */
+.hooper.is-vertical .hooper-track { flex-direction: column; }
+.hooper.is-vertical .hooper-list { max-height: 400px; overflow-y: auto; }
+/* slides were saved mid-animation with height:0 -> restore natural height */
+.hooper.is-vertical .hooper-slide { height: auto !important; }
+
+/* Fixture ticker: reclaim the theme's right margin so the narrow sidebar
+   fits the fixture name/date on two clean, ellipsized lines. */
+.upcoming-fixure .fixure-box { margin-right: 0; }
+.upcoming-fixure .fixure-box > div {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Horizontal strips (Now Trending, Our Casino) become swipeable scrollers. */
+.hooper:not(.is-vertical) .hooper-list {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+.hooper:not(.is-vertical) .hooper-track { width: max-content; }
+.hooper:not(.is-vertical) .hooper-slide {
+  scroll-snap-align: start;
+  max-width: 100%;
+}
+
+/* "Now Trending" mobile strip: banner slides were saved at the capture-time
+   width (539px) — pin each to the viewport width so they fit any screen. */
+.point-casino-list:has(> .point-casino-list-title) .hooper-track { width: 100% !important; }
+.point-casino-list:has(> .point-casino-list-title) .hooper-slide {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+}
+.point-casino-list:has(> .point-casino-list-title) .hooper-slide img {
+  width: 100%;
+}
+
+/* Hero carousel (bootstrap-vue): JS used to swap .active. Show every slide
+   as a full-width snap-scroll strip instead. */
+.carousel-inner {
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory;
+  transform: none !important;
+}
+.carousel-inner .carousel-item {
+  display: block !important;
+  float: none !important;
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  margin-right: 0 !important;
+  transform: none !important;
+  scroll-snap-align: start;
+}
+
+/* Reinforce the drawer state class used by static-fix.js. */
+.point-menu.show { display: block; }
+
+/* Desktop news ticker: the app saved it with .no-marquee + animation-duration:0s,
+   which parks the text off-screen (padding-left:100%). Restore the scroll —
+   desktop only, mobile/tablet already have a real duration. */
+@media only screen and (min-width: 1280px) {
+  .marquee-content.no-marquee { animation-duration: 40s !important; }
+}
+
+/* ---- Login modal (opened when a game is clicked) ---- */
+.mg-login-modal {
+  position: fixed; inset: 0; z-index: 99999;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.78); padding: 16px;
+}
+.mg-login-modal.open { display: flex; }
+.mg-login-dialog {
+  width: min(430px, 94vw); max-height: 92vh; overflow-y: auto;
+  background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 10px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.65);
+}
+.mg-login-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; border-bottom: 1px solid #222;
+  color: #fff; font-size: 21px; font-weight: 600;
+}
+.mg-login-close {
+  width: 36px; height: 36px; border-radius: 50%; flex: 0 0 36px;
+  border: 2px solid #e3343f; background: transparent; color: #e3343f;
+  font-size: 20px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.mg-login-body { padding: 18px 20px 24px; }
+.mg-login-label { display: block; color: #fff; font-size: 14px; margin: 0 0 7px; }
+.mg-login-input {
+  width: 100%; background: #2b2b2b; border: 1px solid #3d3d3d; border-radius: 3px;
+  color: #eee; padding: 12px 14px; margin-bottom: 18px; outline: none;
+}
+.mg-login-input:focus { border-color: #1da851; }
+.mg-login-pass { position: relative; }
+.mg-login-eye {
+  position: absolute; right: 0; top: 0; height: calc(100% - 18px); width: 46px;
+  display: flex; align-items: center; justify-content: center;
+  background: #4a4a4a; color: #ddd;
+}
+.mg-login-check { display: flex; gap: 8px; color: #bbb; font-size: 12px; line-height: 1.5; margin: 0 0 18px; }
+.mg-login-check input { margin-top: 2px; accent-color: #1da851; }
+.mg-login-check u { color: #2ecc71; text-decoration-color: #2ecc71; }
+.mg-login-btn {
+  display: block; text-align: center; text-decoration: none;
+  background: #15684a; color: #fff; font-weight: 600; font-size: 16px;
+  padding: 13px; border-radius: 4px; cursor: pointer;
+}
+.mg-login-btn:hover { color: #fff; text-decoration: none; filter: brightness(1.12); }
+.mg-wa-btn { background: #1da851; }
+.mg-login-or {
+  display: flex; align-items: center; gap: 12px;
+  color: #f0c81c; font-size: 14px; margin: 14px 0;
+}
+.mg-login-or::before, .mg-login-or::after {
+  content: ""; flex: 1; height: 2px; background: #f0c81c; border-radius: 2px;
+}
+body.mg-modal-open { overflow: hidden; }
+
+/* ---- Floating WhatsApp button ---- */
+.mg-wa-float {
+  position: fixed; right: 18px; bottom: 18px; z-index: 99998;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.45);
+}
+.mg-wa-float img { width: 34px; height: 34px; object-fit: contain; }
+@media only screen and (max-width: 767px) {
+  .mg-wa-float { right: 14px; bottom: 70px; width: 50px; height: 50px; }
+}
