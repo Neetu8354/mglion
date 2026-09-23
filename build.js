@@ -368,6 +368,11 @@ html = html.replace(
   /<head>/i,
   '<head><meta http-equiv="Content-Security-Policy" content="script-src \'self\'; object-src \'none\'; frame-src \'none\'; base-uri \'none\'; form-action \'none\'">'
 );
+// Google Search Console verification for this deployment
+html = html.replace(
+  /<meta name="google-site-verification"[^>]*>/i,
+  '<meta name="google-site-verification" content="wFQitoEEuuVeT44tH3N_EJGWd6UIlcXug3iCST2c3bE" />'
+);
 
 // 7. Static fixes for JS-driven widgets (hooper carousels) — see static-fix.css
 html = html.replace(
