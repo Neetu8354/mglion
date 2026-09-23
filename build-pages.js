@@ -174,13 +174,13 @@ function hideElement(html, cls) {
   return html.slice(0, el.start) + openTag + html.slice(el.innerStart);
 }
 
-// Rewrite the inert "#!" nav/footer links to real local pages.
+// Rewrite the inert "#!" nav/footer links to clean extensionless local pages.
 function wireLinks(h) {
-  h = h.replace(/<a href="#!"([^>]*)>\s*Live Casino\s*<\/a>/g, '<a href="casino.html"$1> Live Casino </a>');
-  h = h.replace(/<a href="#!"([^>]*)>\s*Slot\s*<\/a>/g, '<a href="slot.html"$1> Slot </a>');
-  h = h.replace(/<a href="#!"([^>]*)>\s*Fantasy Games\s*<\/a>/g, '<a href="fantasy.html"$1> Fantasy Games </a>');
-  h = h.replace(/<a href="#!"([^>]*)>\s*Terms and Conditions\s*<\/a>/g, '<a href="terms.html"$1> Terms and Conditions </a>');
-  h = h.replace(/<a href="#!"([^>]*)>\s*Responsible Gaming\s*<\/a>/g, '<a href="responsible-gaming.html"$1> Responsible Gaming </a>');
+  h = h.replace(/<a href="#!"([^>]*)>\s*Live Casino\s*<\/a>/g, '<a href="casino"$1> Live Casino </a>');
+  h = h.replace(/<a href="#!"([^>]*)>\s*Slot\s*<\/a>/g, '<a href="slot"$1> Slot </a>');
+  h = h.replace(/<a href="#!"([^>]*)>\s*Fantasy Games\s*<\/a>/g, '<a href="fantasy"$1> Fantasy Games </a>');
+  h = h.replace(/<a href="#!"([^>]*)>\s*Terms and Conditions\s*<\/a>/g, '<a href="terms"$1> Terms and Conditions </a>');
+  h = h.replace(/<a href="#!"([^>]*)>\s*Responsible Gaming\s*<\/a>/g, '<a href="responsible-gaming"$1> Responsible Gaming </a>');
   return h;
 }
 
@@ -304,6 +304,21 @@ async function main() {
   // wire nav/footer links on the homepage too
   fs.writeFileSync(INDEX, wireLinks(shell), 'utf8');
   console.log('updated site/index.html links');
+
+  // sitemap + robots (clean slugs)
+  const BASE = 'https://www.mglion247.live';
+  const routes = ['', 'casino', 'slot', 'fantasy', 'terms', 'responsible-gaming'];
+  const today = new Date().toISOString().slice(0, 10);
+  fs.writeFileSync(path.join(SITE, 'sitemap.xml'),
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    routes.map(r =>
+      `  <url><loc>${BASE}/${r}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${r === '' ? '1.0' : '0.8'}</priority></url>`
+    ).join('\n') +
+    '\n</urlset>\n', 'utf8');
+  fs.writeFileSync(path.join(SITE, 'robots.txt'),
+    'User-agent: *\nAllow: /\nSitemap: ' + BASE + '/sitemap.xml\n', 'utf8');
+  console.log('wrote sitemap.xml + robots.txt');
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

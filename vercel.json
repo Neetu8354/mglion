@@ -1,4 +1,6 @@
 {
   "buildCommand": "node build.js && node build-pages.js || true",
-  "outputDirectory": "site"
+  "outputDirectory": "site",
+  "cleanUrls": true,
+  "trailingSlash": false
 }

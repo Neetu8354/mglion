@@ -187,6 +187,9 @@ const STATIC_FIX_JS = `// Hamburger drawer: theme shows it via .point-menu.show
     var closest = e.target.closest ? e.target.closest.bind(e.target) : function () { return null; };
     var m = menu();
 
+    // inert "#!" links must not put the hash into the URL
+    if (closest('a[href="#!"]')) e.preventDefault();
+
     // hamburger opens/closes the drawer
     if (m && closest('.menu-button-mobile')) {
       e.preventDefault();

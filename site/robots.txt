@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.mglion247.live/sitemap.xml
