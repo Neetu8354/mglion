@@ -1,0 +1,32 @@
+/* Game pages (casino / slot / fantasy) + content pages */
+.pg-wrap { padding: 6px 6px 24px; }
+.pg-tabs { display:flex; gap:8px; overflow-x:auto; padding:4px 2px 12px; scrollbar-width:thin; }
+.pg-tab {
+  flex:0 0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  min-width:74px; padding:8px 8px; background:#161616; border:1px solid #2b2b2b; border-radius:6px;
+  color:#ddd; font-size:12px; line-height:1.2; text-align:center; cursor:pointer; white-space:nowrap;
+}
+.pg-tab img { width:30px; height:30px; object-fit:contain; }
+.pg-tab.active, .pg-tab:hover { border-color:#f0c81c; color:#f0c81c; }
+.pg-tab.pg-text-tab { min-width:92px; padding:12px 16px; font-size:14px; }
+.pg-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:8px; }
+.mg-game-tile {
+  display:block; aspect-ratio:16/10.4; background-size:cover; background-position:center;
+  border-radius:6px; border:1px solid #232323; cursor:pointer;
+}
+.mg-game-tile:hover { filter:brightness(1.12); }
+.pg-providers { display:flex; flex-direction:column; }
+.pg-provider {
+  display:flex; align-items:center; gap:10px; padding:13px 14px;
+  border-bottom:1px solid #262626; color:#e8e8e8; font-size:14px; text-transform:capitalize; cursor:pointer;
+}
+.pg-provider img { width:26px; height:26px; object-fit:contain; flex:0 0 26px; }
+.pg-provider:hover, .pg-provider.active { background:#1d1d1d; color:#f0c81c; }
+.pg-providers-head { padding:13px 14px; font-weight:700; color:#f0c81c; border-bottom:1px solid #262626; }
+.pg-content { padding:22px 18px 40px; color:#d8d8d8; font-size:14px; line-height:1.75; }
+.pg-content h1,.pg-content h2,.pg-content h3,.pg-content h4 { color:#f0c81c; }
+.pg-content a { color:#2ecc71; }
+@media only screen and (max-width: 767px) {
+  .pg-grid { grid-template-columns:repeat(auto-fill,minmax(106px,1fr)); gap:6px; }
+  .pg-wrap { padding:4px 4px 16px; }
+}

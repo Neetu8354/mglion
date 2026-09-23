@@ -59,7 +59,7 @@
         return;
       }
       if (!closest('.mg-login-dialog')) {
-        var gameSel = '.home-casiono-icons a, .home-casiono-icons img, .home-casiono-icons li, .point-casino-list a, .point-casino-list img, .our-casino a, .our-casino img, .casino-img, .game-title, .game-name, .game-icons, .game-icon, .match-odd, .sport-tabs a, .carousel-item, .dropdown-menu a';
+        var gameSel = '.home-casiono-icons a, .home-casiono-icons img, .home-casiono-icons li, .point-casino-list a, .point-casino-list img, .our-casino a, .our-casino img, .casino-img, .game-title, .game-name, .game-icons, .game-icon, .match-odd, .sport-tabs a, .carousel-item, .dropdown-menu a, .mg-game-tile, .pg-tab, .pg-provider';
         if (closest(gameSel) && !closest('.dropdown-toggle')) {
           e.preventDefault();
           modal.classList.add('open');
